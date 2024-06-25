@@ -1,6 +1,11 @@
 * {
     color: aliceblue;
 }
+
+body {
+    background-image: url(/images/Windows-11-Bloom-Screensaver-Dark-scaled.jpg);
+    background-size: cover;
+}
 .calculator-container {
     background-color: #1B1F32;
     width: 400px;
