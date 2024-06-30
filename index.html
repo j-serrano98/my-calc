@@ -8,54 +8,73 @@
 </head>
 <body>
     <div class="calculator-container">
-        <div class="window-basic-operators-button s"></div>
-        <div class="historical-type"></div>
-        <div class="screen">1997</div>
-        <div class="advanced-functions"></div>
+        <div style="background-color: inherit;" class="window-buttons">
+            <div style="display: inline;">Calculator</div>
+            <div style="display: inline;" id="window-button">
+                <button style="color: whitesmoke; background-color: inherit; border: 0px;">_</button>
+                <button style="color: whitesmoke; background-color: inherit; border: 0px;">O</button>
+                <button style="color: whitesmoke; background-color: inherit; border: 0px;">X</button>
+            </div>
+        </div>
+        <div class="historical-type">
+            <div style="font-size: 1.8em; display: inline;">☰</div>
+            <div style="font-size: 1.7em; display: inline;">Standard</div>
+        </div>
+        <div class="screen"></div>
+        <div class="advanced-functions">
+            <div class="advanced-functions-wrapper">
+                <div class="mc">MC</div>
+                <div class="mr">MR</div>
+                <div class="m-plus">M+</div>
+                <div class="m-minus">M-</div>
+                <div class="ms">MS</div>
+                <div class="m-downward-arrow">M..</div>
+            </div>
+        </div>
         <div class="basic-operators">
             <div class="basic-operators-buttons-breaker">
-                <div class="basic-operators-button modulo">%</div>
-                <div class="basic-operators-button 4">CE</div>
-                <div class="basic-operators-button 5">C</div>
-                <div class="basic-operators-button 6">>--</div>                
+                <div class="basic-operators-button" id="modulo">%</div>
+                <div class="basic-operators-button" id="clearEverything">CE</div>
+                <div class="basic-operators-button" id="clear">C</div>
+                <div class="basic-operators-button" id="backspace">>--</div>                
             </div>
             
             <div class="basic-operators-buttons-breaker">
-                <div class="basic-operators-button 7">1/x</div>
-                <div class="basic-operators-button 8">x2</div>
-                <div class="basic-operators-button 9">2Vx</div>
-                <div class="basic-operators-button 10">/</div>                
+                <div class="basic-operators-button" id="divideByNValue">1/x</div>
+                <div class="basic-operators-button" id="powerOfTwo">x2</div>
+                <div class="basic-operators-button" id="power">2Vx</div>
+                <div class="basic-operators-button" id="division">/</div>                
             </div>
                 
             <div class="basic-operators-buttons-breaker">           
-                <div class="basic-operators-button 11">7</div>
-                <div class="basic-operators-button 12">8</div>
-                <div class="basic-operators-button 13">9</div>
-                <div class="basic-operators-button 14">X</div>                
+                <div class="basic-operators-button" id="numberSeven">7</div>
+                <div class="basic-operators-button" id="numberEight">8</div>
+                <div class="basic-operators-button" id="numberNine">9</div>
+                <div class="basic-operators-button" id="multiplication">X</div>                
             </div>
 
             <div class="basic-operators-buttons-breaker">
-                <div class="basic-operators-button 15">4</div>
-                <div class="basic-operators-button 16">5</div>
-                <div class="basic-operators-button 17">5</div>
-                <div class="basic-operators-button 18">-</div>
+                <div class="basic-operators-button" id="numberFour">4</div>
+                <div class="basic-operators-button" id="numberFive">5</div>
+                <div class="basic-operators-button" id="numberSix">6</div>
+                <div class="basic-operators-button" id="substraction">-</div>
             </div>
 
             <div class="basic-operators-buttons-breaker">
-                <div class="basic-operators-button 19">1</div>
-                <div class="basic-operators-button 20">2</div>
-                <div class="basic-operators-button 21">3</div>
-                <div class="basic-operators-button 22">+</div>
+                <div class="basic-operators-button" id="numberOne">1</div>
+                <div class="basic-operators-button" id="numberTwo">2</div>
+                <div class="basic-operators-button" id="numberThree">3</div>
+                <div class="basic-operators-button" id="addition">+</div>
             </div>
 
             <div class="basic-operators-buttons-breaker">
-                <div class="basic-operators-button 23">+/-</div>
-                <div class="basic-operators-button 24">0</div>
-                <div class="basic-operators-button 25">.</div>
-                <div class="basic-operators-button 26">=</div>
+                <div class="basic-operators-button" id="more-or-less">+/-</div>
+                <div class="basic-operators-button" id="numberZero">0</div>
+                <div class="basic-operators-button" id="dot">.</div>
+                <div class="basic-operators-button" id="equal">=</div>
             </div>
         </div>
     </div>
-    <script src="scripts/my-calc.js"></script>
+    <script src="scripts/my-calc.js" defer></script>
 </body>
 </html>
