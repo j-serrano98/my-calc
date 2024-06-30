@@ -142,6 +142,10 @@ function displayValue(value=0) {
     if (displayedValue != '/' || displayedValue != '*' || displayedValue != '-' || displayedValue != '+' || displayedValue != '=' || displayedValue != 'C') {
         displayedValue.textContent += value;
     }
+
+    if (value === 'C' || value === 'CE') {
+        displayedValue.textContent = '0';
+    }
         // if (value === 'C') {
             //     number1 = 0;
             //     number2 = 0;
