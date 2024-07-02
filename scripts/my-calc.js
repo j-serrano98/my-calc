@@ -82,6 +82,83 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
         }
     })
+
+    body.addEventListener('keypress', (event) => {
+        switch(event.key) {
+            case 'more-or-less':
+                sendKeyPressed('+/-');
+                break;
+            case '0':
+                sendKeyPressed('0');
+                break;
+            case '.':
+                sendKeyPressed('.');
+                break;
+            case 'Enter':
+                sendKeyPressed('=');
+                break;
+            case '1':
+                sendKeyPressed('1');
+                break;
+            case '2':
+                sendKeyPressed('2');
+                break;
+            case '3':
+                sendKeyPressed('3');
+                break;
+            case '+':
+                sendKeyPressed('+');
+                break;
+            case '4':
+                sendKeyPressed('4');
+                break;
+            case '5':
+                sendKeyPressed('5');
+                break;
+            case '6':
+                sendKeyPressed('6');
+                break;
+            case '-':
+                sendKeyPressed('-');
+                break;
+            case '7':
+                sendKeyPressed('7');
+                break;
+            case '8':
+                sendKeyPressed('8');
+                break;
+            case '9':
+                sendKeyPressed('9');
+                break;
+            case '*':
+                sendKeyPressed('*');
+                break;
+            case 'divideByNValue':
+                sendKeyPressed('1/x');
+                break;
+            case 'powerOfTwo':
+                sendKeyPressed('x2');
+                break;
+            case 'power':
+                sendKeyPressed('2Vx');
+                break;
+            case '/':
+                sendKeyPressed('/');
+                break;
+            case '%':
+                sendKeyPressed('%');
+                break;
+            case '':
+                sendKeyPressed('CE');
+                break;
+            case 'backspace':
+                sendKeyPressed('C');
+                break;
+            case 'backspace':
+                sendKeyPressed('<--');
+                break;
+        }
+    })
 })
 
 function add(number1, number2) {
@@ -100,6 +177,18 @@ function divide(number1, number2) {
     return number1 / number2;
 }
 
+function modulo(number1, number2) {
+    return number1 % number2;
+}
+
+function exponentiation(number1, number2) {
+    return number1 ** number2;
+}
+
+function duplicate(number1, number2) {
+    return number1 * 2;
+}
+
 function operate(number1, number2, operator) {
     switch (operator) {
         case '+':
@@ -110,6 +199,12 @@ function operate(number1, number2, operator) {
             return multiply(number1, number2);
         case '/':
             return divide(number1, number2);
+        case '%':
+            return modulo(number1, number2);
+        case '2Vx':
+            return exponentiation(number1, number2);
+        case 'x2':
+            return duplicate(number1, number2);
         default:
             return '0'
     }
@@ -118,19 +213,13 @@ function operate(number1, number2, operator) {
 function displayValue(num1, num2, op) {
     let displayedValue = document.querySelector('.screen');
     
-    if (!num1 && !num2 && !op) {
+    if (!num1 && !op && !num2) {
         displayedValue.textContent = 0;
-    }
-
-    if (num1) {
+    } else if (num1 && !op && !num2){
         displayedValue.textContent = num1;
-    }
-
-    if (op) {
+    } else if(num1 && op && !num2) {
         displayedValue.textContent = `${num1}${op}`
-    }
-    
-    if (num2) {
+    } else if (num1 && op && num2) {
         displayedValue.textContent = `${num1}${op}${num2}`
     }
 }
@@ -148,7 +237,7 @@ function sendKeyPressed(value) {
         addValue = `${number2}${value}`;
         number2 = parseInt(addValue);
        }
-    } else if (value === '+' || value === '-' || value === '/' || value === '*') {
+    } else if (value === '+' || value === '-' || value === '/' || value === '*'|| value === '%' || value === '2Vx' || value === 'x2') {
         if (number2 === undefined) {
             operator = value;
         } else if (number2 !== undefined) {
@@ -156,9 +245,20 @@ function sendKeyPressed(value) {
             number2 = undefined;
             operator = value;
         }
+    } else if (value === '=') {
+        if (operator && number2) {
+            number1 = operate(number1, number2, operator);
+            number2 = undefined;
+            operator = undefined;
+        }
+    } else if (value === 'EC' || value === 'C') {
+        number1 = undefined;
+        number2 = undefined;
+        operator = undefined;
     }
     
-    displayValue(number1, number2, operator)
+
+    displayValue(Math.round(number1 *100) / 100, number2, operator)
 
     console.log(`Number 1: ${number1}
 Operator: ${operator}

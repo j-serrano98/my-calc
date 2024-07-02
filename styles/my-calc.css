@@ -11,7 +11,7 @@ body {
 
 }
 .calculator-container {
-    background-color: #1B1F32;
+    background-color: #1A1F33;
     width: 400px;
     height: 570px;
     margin: auto;
@@ -20,12 +20,65 @@ body {
 
 .window-buttons {
     height: 5%;
-    background-color: #3d456b;
     border-radius: 9px 9px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#calculator-text {
+    font-size: smaller;
+    font-weight: 600;
+    padding: 10px 0px 0px 40px;
+}
+
+.window-button {
+    align-self: flex-end;
+}
+
+button {
+    color: whitesmoke;
+    background-color: inherit;
+    border: 0px;
+    cursor: pointer;
+    width: 20px;
+    height: 98%;
+    padding: 0px 10px 10px 10px;
+}
+
+.maximize-icon {
+    width: 10px;
+    height: 10px;
+    border: 1px solid ;
+    box-sizing: border-box;
+  }
+
+#close, #minimize, #maximize {
+    padding-right: 20px;
+    align-items: center;
+}
+
+#minimize:hover {
+    background-color: #41465c;
+}
+
+#maximize:hover {
+    background-color: #41465c;
+}
+
+#close:hover {
+    background-color: red;
+    border-radius: 0px 9px 0px 0px;
 }
 
 .historical-type {
     height: 8%;
+    font-size: 1.6em;
+    display: flex;
+    padding-left: 10px;
+}
+
+.type {
+    padding-left: 10px;
 }
 
 .screen {
@@ -45,15 +98,16 @@ body {
     height: 3%;
 }
     
-.advanced-functions-wrapper {
+.advanced-functions-wrapper, .advanced-functions-wrapper *{
     height: 75%;
     justify-content: space-between;
     margin-left: 15px;
     margin-right: 15px;
     display: flex;
     align-items: center;
-    font-size: smaller;
+    font-size: small;
     cursor:not-allowed;
+    color: #5C6171 !important;
 
 }
 
@@ -74,7 +128,7 @@ body {
 }
 
 .basic-operators-button {
-    background-color: #2D3145;
+    background-color: #363A4E;
     width: 24%;
     height: 98%;
     display: flex;
@@ -85,5 +139,26 @@ body {
 }
 
 .basic-operators-button:hover {
-    background-color: #393e53;
+    background-color: rgb(66, 72, 95);
+}
+
+.operator {
+    background-color: #2D3145;
+}
+
+.operator:hover {
+    background-color: #383b55;
+}
+
+#equal {
+    background-color: #4DC2FB;
+    color: #1A1F33;
+}
+
+#equal:hover {
+    background-color: #45b0e6;
+}
+
+#divideByNValue, #more-or-less, #dot {
+    cursor: not-allowed;
 }
