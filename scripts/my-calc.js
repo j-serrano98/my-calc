@@ -9,76 +9,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
         switch(target.id) {
             case 'more-or-less':
-                displayValue('+/-');
+                sendKeyPressed('+/-');
                 break;
             case 'numberZero':
-                displayValue('0');
+                sendKeyPressed('0');
                 break;
             case 'dot':
-                displayValue('.');
+                sendKeyPressed('.');
                 break;
             case 'equal':
-                displayValue('=');
+                sendKeyPressed('=');
                 break;
             case 'numberOne':
-                displayValue('1');
+                sendKeyPressed('1');
                 break;
             case 'numberTwo':
-                displayValue('2');
+                sendKeyPressed('2');
                 break;
             case 'numberThree':
-                displayValue('3');
+                sendKeyPressed('3');
                 break;
             case 'addition':
-                displayValue('+');
+                sendKeyPressed('+');
                 break;
             case 'numberFour':
-                displayValue('4');
+                sendKeyPressed('4');
                 break;
             case 'numberFive':
-                displayValue('5');
+                sendKeyPressed('5');
                 break;
             case 'numberSix':
-                displayValue('6');
+                sendKeyPressed('6');
                 break;
             case 'substraction':
-                displayValue('-');
+                sendKeyPressed('-');
                 break;
             case 'numberSeven':
-                displayValue('7');
+                sendKeyPressed('7');
                 break;
             case 'numberEight':
-                displayValue('8');
+                sendKeyPressed('8');
                 break;
             case 'numberNine':
-                displayValue('9');
+                sendKeyPressed('9');
                 break;
             case 'multiplication':
-                displayValue('*');
+                sendKeyPressed('*');
                 break;
             case 'divideByNValue':
-                displayValue('1/x');
+                sendKeyPressed('1/x');
                 break;
             case 'powerOfTwo':
-                displayValue('x2');
+                sendKeyPressed('x2');
                 break;
             case 'power':
-                displayValue('2Vx');
+                sendKeyPressed('2Vx');
                 break;
             case 'division':
-                displayValue('/');
+                sendKeyPressed('/');
                 break;
             case 'modulo':
-                displayValue('%');
+                sendKeyPressed('%');
                 break;
             case 'clearEverything':
-                displayValue('CE');
+                sendKeyPressed('CE');
                 break;
             case 'clear':
-                displayValue('C');
+                sendKeyPressed('C');
                 break;
             case 'backspace':
-                displayValue('<--');
+                sendKeyPressed('<--');
                 break;
         }
     })
@@ -115,76 +115,50 @@ function operate(number1, number2, operator) {
     }
 }
 
-function displayValue(value=0) {
+function displayValue(num1, num2, op) {
     let displayedValue = document.querySelector('.screen');
-    let number1 = '';
-    let number2 = '';
-    let operator = ''
-
-    if (displayedValue.textContent === '0') {
-        displayedValue.textContent = '';
-    }
-
-
     
-    if (value === '/') {
-        number1 = displayedValue.textContent;
-        displayedValue.textContent = '';
-        operator = '/';
-
-    } else if (value === '=') {
-        number2 = displayedValue.textContent;
-        console.log(`Formula: ${number1} ${operator} ${number2}`);
-        // const result = operate(number1, number2, operator);
-        displayedValue.textContent = result;
-    }
-        
-    if (displayedValue != '/' || displayedValue != '*' || displayedValue != '-' || displayedValue != '+' || displayedValue != '=' || displayedValue != 'C') {
-        displayedValue.textContent += value;
+    if (!num1 && !num2 && !op) {
+        displayedValue.textContent = 0;
     }
 
-    if (value === 'C' || value === 'CE') {
-        displayedValue.textContent = '0';
+    if (num1) {
+        displayedValue.textContent = num1;
     }
-        // if (value === 'C') {
-            //     number1 = 0;
-            //     number2 = 0;
-            //     operator = '';
-            //     displayedValue.textContent = '0';
-            // }
-
-    // switch (value) {
-    //     case '/':
-    //         number1 = displayedValue.textContent;
-    //         displayedValue.textContent = ''
-    //         operator = '/';
-    //         // displayedValue.textContent += `${number1}/`;
-    //     case '*':
-    //         number1 = displayedValue.textContent;
-    //         operator = '*';
-    //         // displayedValue.textContent += `${number1}*`;
-    //     // case '-':
-    //     //     number1 = parseInt(displayedValue.textContent);
-    //     //     operator = '-';
-    //     //     displayedValue.textContent += `${number1}-`;
-    //     // case '+':
-    //     //     number1 = parseInt(displayedValue.textContent);
-    //     //     operator = '+';
-    //     //     displayedValue.textContent += `${number1}+`;
-    //     case '=':
-    //         number2 = displayedValue.textContent;
-    //         console.log(`Formula: ${number1} ${operator} ${number2}`)
-    //         // const result = operate(number1, number2, operator);
-    //         displayedValue.textContent = result;
-        // case 'C':
-        //     number1 = 0;
-        //     number2 = 0;
-        //     operator = '';
-        //     displayedValue.textContent = '0';
-    // }
     
 }
 
+function sendKeyPressed(value) {
+    if (!isNaN(value)) {
+       if(number1 === undefined && operator === undefined) {
+        number1 = parseInt(value);
+       } else if (number1 !== undefined && operator == undefined) {
+        addValue = `${number1}${value}`;
+        number1 = parseInt(addValue);
+       } else if (number1 !== undefined && number2 === undefined) {
+        number2 = parseInt(value);
+       } else if (number1 !== undefined && number2 !== undefined) {
+        addValue = `${number2}${value}`;
+        number2 = parseInt(addValue);
+       }
+    } else if (value === '+' || value === '-' || value === '/' || value === '*') {
+        if (number2 === undefined) {
+            operator = value;
+        } else if (number2 !== undefined) {
+            number1 = operate(number1, number2, operator);
+            number2 = undefined;
+            operator = value;
+        }
+    }
+
+    displayValue(number1, number2, operator)
+
+    console.log(`Number 1: ${number1}
+Operator: ${operator}
+Number 2: ${number2}`)
+}
+
+// function storeOperands()
 
 let number1 = undefined;
 let number2 = undefined;
