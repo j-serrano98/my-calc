@@ -125,7 +125,14 @@ function displayValue(num1, num2, op) {
     if (num1) {
         displayedValue.textContent = num1;
     }
+
+    if (op) {
+        displayedValue.textContent = `${num1}${op}`
+    }
     
+    if (num2) {
+        displayedValue.textContent = `${num1}${op}${num2}`
+    }
 }
 
 function sendKeyPressed(value) {
@@ -150,7 +157,7 @@ function sendKeyPressed(value) {
             operator = value;
         }
     }
-
+    
     displayValue(number1, number2, operator)
 
     console.log(`Number 1: ${number1}
